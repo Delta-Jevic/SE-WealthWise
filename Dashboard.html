@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="./Images/basketball-ball.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>WealthWise-Dashborad</title>
+
+  <style>
+    /* Import Montserrat and Poppins font family */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* Create Variables for colors */
+
+:root
+{
+  --primary-color:#2b00d4;
+  --khaki-color:#f7d06b;
+  --light-purple-color: #d8d6ed;
+  --purple-color:#6f54e1 ;
+  --sky-blue-color:#bbecff ;
+  --orange-color: #fe9e43;
+  --dark-sea-green:#9ccea6;
+  --turquoise-color:#2ee2c4;
+  --light-pink:#feb5a9;
+  --gray-green:#cce7d1;
+  --beige-color:#f0f3de;
+  --papaya-color:#ffc994;
+}
+/* Defining reusable classes for Background color */
+.bg-primary
+{
+  background-color:var(--primary-color);
+}
+.bg-light-purple
+{
+  background-color:var(--light-purple-color);
+}
+.bg-khaki{
+  background-color:var(--khaki-color);
+}
+.bg-sea-green{
+  background-color:var(--dark-sea-green);
+}
+.bg-orange{
+  background-color:var(--orange-color);
+}
+.bg-beige{
+  background-color:var(--beige-color);
+}
+.bg-gray-green{
+  background-color:var(--gray-green);
+}
+.bg-papaya-color{
+  background-color:var(--papaya-color);
+}
+.bg-sky-blue{
+  background-color:var(--sky-blue-color);
+}
+.color-purple{
+  color:var(--purple-color);
+}
+.color-gray{
+  color:#ccc;
+}
+.cl-papaya{
+  color:var(--papaya-color);
+}
+.cl-orange{
+  color:var(--orange-color);
+}
+.cl-light-purple{
+  color:var(--light-purple-color);
+}
+.cl-primary{
+  color:var(--primary-color);
+}
+.cl-sea-green
+{
+  color:var(--dark-sea-green);
+}
+
+/* Defining reusables classes to style icons */
+.icon-style{
+  border-radius:50%;
+  padding:5px;
+  background-color:#fff;
+}
+.small{
+  font-size:12px;
+  font-weight:bold;
+}
+.bit{
+  border-radius:50%;
+  padding:5px;
+  background-color:#333;
+  color:#fff;
+}
+.etc{
+  background-color:var(--orange-color);
+  border-radius:50%;
+  padding:5px;
+  color:#fff;
+
+}
+.bi_icon1{
+  background-color:var(--dark-sea-green);
+  padding:5px;
+  border-radius:50%;
+  color:#fff;
+}
+.li_icon{
+  background-color:var(--primary-color);
+  padding:5px;
+  border-radius:50%;
+  color:#fff;
+}
+.m-0{
+  margin:0;
+}
+.sx{
+  font-size:11px;
+}
+.bold{
+  font-weight:bold;
+}
+
+/* Modern css reset */
+
+*,
+*::before,
+*::after
+{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'poppins', 'MontserratAlternate', sans-serif;
+  overflow:scroll;
+}
+
+ul[role = 'list'],
+ol[role = 'list']
+{
+list-style:none;
+}
+
+image,
+picture{
+  display:block;
+  max-width:100%;
+}
+
+
+html:focus-within{
+  scroll-behavior:smooth;
+}
+
+h3{
+  margin-top:0;
+}
+
+.close-icon{
+  display:none;
+}
+/* big container */
+
+.big-container{
+  display:grid;
+  grid-template-columns:4em 10fr 4fr;
+  width:100%;
+
+}
+
+/* navbar on the left/ left container */
+.logo{
+  width:30px;
+  height:30px;
+}
+
+.left-container, .left-top{
+  display:flex;
+  flex-direction:column;
+}
+
+.left-container{
+  justify-content:space-between;
+  align-items:center;
+  padding:1em .25em 1.5em;
+  border:1px solid #ccc;
+  background-color:#F9F2ED;
+  opacity:0.9;
+
+}
+
+.left-top{
+  gap:1.5em;
+}
+
+/* style for the add icon at the bottom of left container */
+.left-bottom{
+  padding:0.55em 0.55em 0.10em 0.55em;
+  border-radius:0 12px 12px;
+  color:#fff;
+}
+/* color for the home icon, the star icon and the message icon */
+.home-icon, .star-icon, .sms-icon{
+  color:var(--primary-color);
+}
+
+
+/* middle container */
+/* top container */
+.middle-container{
+  padding:0.25em 0;
+}
+.profile-img{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+}
+
+/* style for the navbar at the top of the middle container */
+.middle-top-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0.25em ;
+}
+/* styling for the  profile and the select area*/
+.profile, .middle-top-right{
+  display:flex;
+  align-items:center;
+  gap:0.75em;
+}
+
+/* styling for message icon right next to the dropdown menu */
+.message{
+  padding:0.45em 0.45em 0.07em 0.45em;
+  color:#fff;
+  border-radius:10px;
+}
+
+
+/* styling for the Choose Account dropdown menu */
+#account{
+  padding:7px 15px;
+  border-radius:7px;
+  border:1px solid #fff;
+}
+
+/* Middle-top-main contains the credit card */
+.middle-top-main{
+  display:grid;
+  grid-template-areas:
+  "earning credit credit spending"
+  "month-goal credit credit spend-goal";
+  margin:1.5em 0;
+  padding:0.25em ;
+}
+.total-earning{
+  grid-area:earning;
+  display:flex;
+  margin-bottom:0.5em;
+}
+.month-goal{
+  grid-area:month-goal;
+
+}
+.total-spending{
+  grid-area:spending;
+  margin-bottom:0.5em;
+  justify-content:flex-end;
+
+}
+.spending-goal{
+  grid-area:spend-goal;
+  justify-content:flex-end;
+}
+.month-goal, .total-earning, .total-spending, .spending-goal{
+  display:flex;
+  align-items:center;
+  gap:1.5em;
+}
+
+/* styling for the icons within the middle-top-main section */
+.earn-icon, .month-icon, .spend-icon, .spend-goal-icon{
+  padding:0.75em 0.75em 0.45em;
+  border-radius:7px;
+  flex-grow:1/2;
+}
+.earn-number, .month-number, .spend-number, .spend-goal-number{
+  padding-top:10px;
+  flex-grow:1;
+}
+
+/* Style for the Credit Card */
+.credit-card{
+  grid-area:credit;
+  background-color:var(--khaki-color);
+  width:16em;
+  height:9em;
+  margin:1em 0 0 1em;
+  border-radius:10px;
+  padding:0 1em;
+
+}
+.credit-name{
+  margin:15px 0;
+}
+.credit-name, .date, .cvv-number{
+  display:flex;
+  flex-direction:column;
+}
+
+.credit-top, .credit-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.visa-img{
+  width:45px;
+}
+
+/* middle middle container */
+/* This section contains the titles / ACTIVITY SUMMARY / SPENDING SUMMARY / INCOME SUMMARY */
+.middle-middle{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:4.5em;
+  padding-left:1em;
+  border-top:1px solid #ccc;
+  border-bottom:1px solid #ccc;
+  margin-top:25px;
+}
+
+/* middle bottom container */
+/* This section has two columns */
+.middle-bottom{
+  display:grid;
+  grid-template-columns:2fr 3fr;
+}
+
+/* middle-bottom-1 */
+/* Styling for the first column in the bottom section of the middle container */
+.middle-bottome-1{
+  padding:0.5em;
+}
+/* styling for the header of this column, and the rows after the graph */
+.middle-bottom1-header,.monthly-plan, .activity-settings,
+.activity-goals, .activity-shopping
+{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.monthly-plan, .activity-settings, .activity-goals, .activity-shopping{
+  margin:0.5em 0.5em;
+}
+
+.middle-bottom1-header, .middle-bottom1-graph{
+  padding:3px;
+}
+.middle-bottom1-header > p, .middle-bottom1-header > h4{
+  margin:3px 0;
+}
+/* styling for the container with the graph */
+.middle-bottom1-graph{
+  margin:5px 0;
+  width:350px;
+  height:195px;
+}
+/* styling for the icons whithin this column */
+.monthly-plan > i, .activity-settings > i, .activity-goals > i, .activity-shopping > i{
+  padding:10px;
+  border-radius:7px;
+
+}
+
+/* middle-bottom-2 */
+/* Styling for the second column in the bottom section of the middle container */
+.middle-bottom-2{
+  padding:0 0.75em;
+  border-left:1px solid #ccc;
+}
+.date-title{
+  margin-bottom:5px;
+}
+.bottom_date{
+  margin-top:0;
+}
+.date_icon, .bottom_date{
+  color:#ccc;
+}
+
+/* styling for the header and the title container */
+.middle-bottom2-header, .bottom2-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.bottom2-title{
+  gap:1.25em;
+}
+
+.bottom2-title > h5{
+  margin:15px 0;
+}
+
+/* styling for the container showing the date and also the container with the colorful dot */
+.bottom2-date, .dot{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 0.5em;
+}
+
+/* the dot container comprises the colorful dot, a title and an attach file icon */
+.dot{
+  width:200px;
+}
+.dot > h1{
+  padding:0 5px ;
+  margin-bottom:1.2em;
+
+}
+.dot > i{
+  color:#333;
+  background-color:rgba(0,0.3,0.4, 0.1);
+  padding:5px;
+  border-radius:7px;
+  font-size:15px;
+}
+
+/* the supplies icon is on the left of each row */
+.supplies{
+  width:160px;
+}
+
+/* styling for all the rows in this second column of the middle-bottom section */
+.bottom2-row1, .supplies,
+.bottom2-row2,.bottom2-row3,
+.bottom2-row4{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:0.75em;
+  height:90px;
+  box-sizing:border-box;
+}
+
+
+/* right container */
+
+.right-container{
+  padding:0 20px;
+  background-color:var(--light-purple-color);
+  opacity:0.9;
+}
+
+.right-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 0;
+}
+
+/* styling of the header and the paragraph in the right top container */
+.right-top-header > h3{
+  margin-bottom:0;
+}
+.right-top-header > p{
+  margin-top:0;
+}
+
+/* Styling for the account section in the right container */
+.right-account-info, .favorites{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:2em;
+}
+.right-account-info
+{
+  background-color:var(--primary-color);
+  margin:20px;
+  padding:10px;
+  color:#fff;
+  border-radius:10px;
+}
+
+.account-buttons{
+  position:relative;
+}
+.deposit, .withdraw{
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  background-color:#fff;
+  border-radius:7px;
+  border:none;
+}
+
+.buttons{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:1em;
+  position:absolute;
+  top:90%;
+  left:20%;
+}
+
+/* Styling for the Ethereum and Bitcoin section containing the graph */
+.eth, .btc{
+  background-color:#fff;
+  border-radius:7px;
+  padding:5px;
+}
+
+.btc__header, .eth__header{
+  display:flex;
+  align-items:center;
+  gap:1em;
+}
+
+.money-stat{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:1em;
+}
+
+.btc__numbers, .eth__numbers{
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  gap:2em;
+}
+#binance_graph{
+  width:50px;
+  height:50px;
+}
+
+/* Styling for the live prices section */
+.binance, .binance_info, .litecoin,.litecoin_info ,
+.ethereum,.ethereum_info, .bitcoin, .bitcoin_info
+{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.binance_stats{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.menu-icon, .side-right-icon{
+  display:none;
+}
+.close-icon-left{
+  display:none;
+}
+.close-icon-right{
+  display:none;
+}
+.prices, .money-stat, .account-buttons, .right-top, .favorites{
+  width:300px;
+}
+
+@media only screen and (max-width:767px)
+{
+  .close-icon-right{
+    display:block;
+  }
+  .big-container{
+    grid-template-columns:auto auto 2fr;
+    overflow-y:scroll;
+  }
+
+  .right-container{
+    display:none;
+    position:fixed;
+    height:100vh;
+    top:0;
+    right:0;
+    transition:all 5s ease;
+
+
+  }
+  .middle-bottom-1, .middle-bottom-2{
+    width:100vw;
+  }
+  .credit-card{
+    display:none;
+  }
+  #thedate{
+    display:none;
+  }
+  .middle-top-header > .profile > h3{
+    font-size:10px;
+  }
+  #greeting{
+    display:none;
+  }
+
+
+
+}
+
+@media only screen and (max-width:912px)
+{
+  .close-icon-left{
+    display:block;
+  }
+  .big-container{
+    grid-template-columns:auto;
+  }
+  .middle-container{
+    width:100vw;
+    margin:auto;
+    position:fixed;
+    height:100vh;
+    overflow: scroll;
+
+  }
+
+  .left-container{
+    display:none;
+    width:0;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1;
+    height:100vh;
+    transition:all 5s ease ;
+  }
+  .middle-bottom{
+    grid-template-columns:1fr;
+  }
+  .middle-bottom1-graph{
+    display:grid;
+    place-items:center;
+    width:100vw;
+    height:auto;
+  }
+  .menu-icon{
+    display:block;
+  }
+
+
+}
+@media only screen and (max-width:1024px)
+{
+  .close-icon-right{
+    display:block;
+  }
+    .big-container{
+      grid-template-columns:5em auto;
+      height:100%;
+    }
+    .right-container{
+      display:none;
+      width:90%;
+      position:fixed;
+      height:100vh;
+      top:0;
+      right:0;
+      transition:all 5s ease;
+      overflow:auto;
+      z-index:1000;
+    }
+    .right-account-info
+    {
+      width:80%;
+      margin:auto;
+    }
+    .money-stat{
+      flex-direction:column;
+      align-items:stretch;
+    }
+
+    .side-right-icon{
+      display:block;
+    }
+
+
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="big-container">
+  <!-- Left Container -->
+    <nav class="left-container">
+      <div class="left-top">
+        <div class="close-icon-left">
+        <i class="material-icons">close</i>
+        </div>
+        <img src="./Images/crypto-logo.png" alt="Crypto-logo" class="logo">
+        <i class="material-icons home-icon">home</i>
+        <i class="material-icons">person</i>
+        <i class="material-icons sms-icon">sms</i>
+        <i class="material-icons">settings</i>
+        <i class="material-icons">play_arrow</i>
+        <i class="material-icons star-icon">star_outline</i>
+        <i class="material-icons">history</i>
+        <i class="material-icons">import_export</i>
+      </div>
+      <div class="left-bottom bg-primary">
+        <i class="material-icons">add</i>
+      </div>
+    </nav>
+
+  <!-- Middle Container -->
+    <main class="middle-container">
+      <!--  Top of the middle Container with the navbar section and the credit card section -->
+      <section class="middle-top">
+        <div class="middle-top-header">
+          <div class="profile">
+            <div class="menu-icon">
+            <i class="material-icons">menu</i>
+            </div>
+            <img src="./Images/profile.jpg" alt="profile-picture" class="profile-img">
+            <h3 id="greeting">Hi<br>Your WealthWise Finance</h3>
+          </div>
+
+
+          <div class="middle-top-right">
+            <div class="account">
+              <select name="account" id="account" class="bg-light-purple">
+                <option value="Choose Account">Choose Account</option>
+                <option value="Google">Google</option>
+                <option value="Github">Github</option>
+                <option value="Apple">Apple</option>
+                <option value="Amazon">Amazon</option>
+              </select>
+
+            </div>
+          <div class="message bg-primary">
+            <i class="material-icons">forum</i>
+          </div>
+          <div class="side-right-icon">
+          <i class="material-icons ">first_page</i>
+          </div>
+          </div>
+        </div>
+        <div class="middle-top-main">
+          <div class="total-earning">
+            <div class="earn-icon bg-sea-green">
+              <i class="material-icons ">stacked_line_chart</i>
+            </div>
+            <div class="earn-number">
+              <small>Total earnings</small>
+              <h3>$14,786.00</h3>
+            </div>
+          </div>
+          <div class="month-goal">
+            <div class="month-icon bg-beige">
+              <i class="material-icons">dashboard</i>
+            </div>
+            <div class="month-number">
+              <small>Goal for this month</small>
+              <h3>$17,963.92</h3>
+            </div>
+          </div>
+          <div class="credit-card">
+            <div class="credit-top">
+              <div class="credit-name">
+                <small class="sx">Name Card</small>
+                <small class="bold">Amee Parmar</small>
+              </div>
+              <div class="credit-type">
+              <img src="./Images/visa.png" alt="visa-img" class="visa-img"/>
+              </div>
+            </div>
+            <div class="credit-middle">
+              <small>***  ***  ***  123</small>
+            </div>
+            <div class="credit-bottom">
+              <div class="date">
+                <small class="color-gray sx">EXP DATE</small>
+                <small class="sx bold">12/25</small>
+              </div>
+              <div class="cvv-number">
+                <small class="color-gray sx ">CVV NUMBER</small>
+                <small class="sx bold">123</small>
+              </div>
+            </div>
+
+          </div>
+          <div class="total-spending">
+            <div class="spend-icon bg-papaya-color">
+              <i class="material-icons">auto_graph</i>
+
+            </div>
+            <div class="spend-number">
+              <small>Total Spendings</small>
+              <h3>$4,875.91</h3>
+            </div>
+          </div>
+          <div class="spending-goal">
+            <div class="spend-goal-icon bg-sky-blue">
+              <i class="material-icons">shopping_bag</i>
+            </div>
+            <div class="spend-goal-number">
+              <small>Spending Goal</small>
+              <h3>$6,817.00</h3>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Middle part of the middle container with ACTIVITY SUMMARY/ SPENDING SUMMARY AND INCOME SUMMARY titles -->
+      <div class="middle-middle">
+      <p>ACTIVITY SUMMARY</p>
+      <p class="color-gray">SPENDING SUMMARY</p>
+      <p class="color-gray">INCOME SUMMARY</p>
+      </div>
+
+      <!-- Bottom part of the middle container -->
+      <section class="middle-bottom">
+
+<!-- First column of the bottom part -->
+      <div class="middle-bottome-1">
+      <div class="middle-bottom1-header">
+        <p>Activity Graph</p>
+        <h4>$186K</h4>
+      </div>
+      <!-- Graph area in the first column of the bottom part -->
+      <div class="middle-bottom1-graph">
+        <canvas id="myChart"></canvas>
+      </div>
+    <!-- Rows of Activities in the first column of the bottom part -->
+      <div class="middle-bottom1-activity">
+    <!-- Row 1 -->
+        <div class="monthly-plan">
+          <i class="material-icons bg-light-purple color-purple">date_range</i>
+          <p>Monthly Plan</p>
+          <i class="material-icons">keyboard_arrow_right</i>
+        </div>
+      <!-- Row 2 -->
+        <div class="activity-settings">
+          <i class="material-icons bg-light-purple color-purple">settings</i>
+          <p>Settings</p>
+          <i class="material-icons ">keyboard_arrow_right</i>
+        </div>
+        <!-- Row 3 -->
+        <div class="activity-goals">
+          <i class="material-icons bg-light-purple color-purple">flag</i>
+          <p>Goals</p>
+          <i class="material-icons">keyboard_arrow_right</i>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="activity-shopping">
+          <i class="material-icons bg-light-purple color-purple">shopping_bag</i>
+          <p>Shopping</p>
+          <i class="material-icons">keyboard_arrow_right</i>
+        </div>
+      </div>
+      </div>
+
+      <!-- Second Column of the bottom part -->
+      <div class="middle-bottom-2">
+        <!-- top section of the second column of the bottom part -->
+      <div class="middle-bottom2-header">
+        <div class="bottom2-title">
+          <h5>History</h5>
+          <h5>Upcoming</h5>
+        </div>
+        <div class="bottom2-date">
+          <i class="material-icons">date_range</i>
+          <small id="thedate">03 Jan 22-04 Mar 22</small>
+          <i class="material-icons">settings</i>
+          <i class="material-icons">add</i>
+        </div>
+      </div>
+      <p class="color-gray m-0">March 12 2022</p>
+
+      <!-- Different rows of activities in the 2nd column of the bottom part -->
+
+      <!-- Row 1 -->
+      <div class="bottom2-row1">
+<div class="supplies">
+  <i class="material-icons date_icon">sync_alt</i>
+  <div>
+  <h6 class="date-title">Office supplies</h6>
+  <small class="bottom_date sx">03/10/22 at 4:25 pm</small>
+  </div>
+</div>
+
+<div class="dot">
+  <h1 class="cl-sea-green">.</h1>
+
+<small>Supplies</small>
+
+<i class="material-icons">attach_file</i>
+</div>
+
+<small>-$10,000.00</small>
+
+      </div>
+      <p class="color-gray">02 Apr, 2022</p>
+
+      <!-- Row 2 -->
+      <div class="bottom2-row2">
+        <div class="supplies">
+          <i class="material-icons color-purple">open_in_browser</i>
+          <div>
+          <h6 class="date-title">Pak Transfer</h6>
+          <small class="bottom_date sx">03/23/22 at 5:25 pm</small>
+          </div>
+        </div>
+
+        <div class="dot">
+          <h1 class="cl-papaya">.</h1>
+          <small>Marketing</small>
+          <i class="material-icons">attach_file</i>
+        </div>
+
+        <small class="color-purple">+$50,500.00</small>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="bottom2-row3">
+        <div class="supplies">
+          <i class="material-icons date_icon">sync_alt</i>
+          <div>
+          <h6 class="date-title">Salary Transfer</h6>
+          <small class="bottom_date sx">04/02/22 at 3:15 pm</small>
+          </div>
+        </div>
+
+        <div class="dot">
+          <h1 class="cl-light-purple">.</h1>
+          <small>Office</small>
+          <i class="material-icons">attach_file</i>
+        </div>
+
+
+        <small>-$20,000.00</small>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="bottom2-row4">
+        <div class="supplies">
+          <i class="material-icons date_icon">system_update_alt</i>
+          <div>
+          <h6 class="date-title">Cash Withdrawl</h6>
+          <small class="bottom_date sx">04/06/22 at 2:25 pm</small>
+          </div>
+        </div>
+
+        <div class="dot">
+          <h1 class="cl-orange">.</h1>
+          <small>General</small>
+          <i class="material-icons">attach_file</i>
+        </div>
+
+        <small>-$13,960.00</small>
+      </div>
+
+      </div>
+    </section>
+    </main>
+
+  
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./myChart.js" charset="utf-8"></script>
+  <script src="./lineChart1.js" charset="utf-8"></script>
+</body>
+</html>

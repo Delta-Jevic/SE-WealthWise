@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Calculator | WealthWise</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="calculator.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: black;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        .calculator-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 50%;
+            margin: 50px auto;
+        }
+        .calculator-container h1 {
+            color: #ff2770;
+            font-weight: bold;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #ff2770;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: black;
+        }
+        .result-box {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff2770;
+            background: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>WealthWise Investment Calculator</h2>
+    </header>
+    
+    <div class="calculator-container">
+        <h1>Investment Calculator</h1>
+        <p style="color: #555;">Plan your financial future with WealthWise</p>
+        
+        <div class="form-group">
+            <label for="initialAmount">Initial Investment ($):</label>
+            <input type="number" id="initialAmount" placeholder="Enter amount" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="monthlyContribution">Monthly Contribution ($):</label>
+            <input type="number" id="monthlyContribution" placeholder="Enter amount" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="interestRate">Annual Interest Rate (%):</label>
+            <input type="number" id="interestRate" placeholder="Enter rate" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="years">Investment Duration (Years):</label>
+            <input type="number" id="years" placeholder="Enter years" required>
+        </div>
+        
+        <button onclick="calculateInvestment()">Calculate</button>
+        
+        <div id="result" class="result-box" style="display: none;"></div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 WealthWise | Smart Financial Planning</p>
+    </footer>
+    
+    <script>
+        function calculateInvestment() {
+            let initialAmount = parseFloat(document.getElementById('initialAmount').value);
+            let monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value);
+            let interestRate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
+            let years = parseInt(document.getElementById('years').value);
+            let months = years * 12;
+
+            let futureValue = initialAmount * Math.pow(1 + interestRate, months) + 
+                monthlyContribution * ((Math.pow(1 + interestRate, months) - 1) / interestRate);
+            
+            document.getElementById('result').innerHTML = `Estimated Future Value: <strong>$${futureValue.toFixed(2)}</strong>`;
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

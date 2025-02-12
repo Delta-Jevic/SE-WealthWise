@@ -11,16 +11,19 @@ LoginLinK.addEventListener('click', () => {
 });
 
 // Function to show the success modal
-function showSuccessModal(message) {
+function showSuccessModal(message, redirectUrl) {
     const modal = document.getElementById('successModal');
     const messageElement = document.getElementById('successMessage');
     
     messageElement.textContent = message; // Set custom message
     modal.style.display = 'flex'; // Show modal
     
-    // Auto-hide modal after 3 seconds
+    // Auto-hide modal after 3 seconds, then redirect
     setTimeout(() => {
         modal.style.display = 'none';
+        if (redirectUrl) {
+            window.location.href = redirectUrl;
+        }
     }, 3000);
 }
 
@@ -44,12 +47,7 @@ registerForm.addEventListener('submit', (e) => {
     } else {
         users[email] = password;
         localStorage.setItem('users', JSON.stringify(users));
-        showSuccessModal('Registration successful!'); // Show success modal
-        
-        // Switch to login form after modal disappears
-        setTimeout(() => {
-            container.classList.remove('active');
-        }, 3000); // Delay to match modal duration
+        showSuccessModal('Registration successful!', './Product.html'); // Redirect to Product.html
     }
 });
 
@@ -63,12 +61,7 @@ loginForm.addEventListener('submit', (e) => {
     
     const users = JSON.parse(localStorage.getItem('users')) || {};
     if (users[email] && users[email] === password) {
-        showSuccessModal('Login successful!'); // Show success modal
-        
-        // Redirect to the main page after modal disappears
-        setTimeout(() => {
-            window.location.href = './signup.html'; // Replace with the actual URL of your main page
-        }, 3000); // Delay to match modal duration
+        showSuccessModal('Login successful!', './Dashboard.html'); // Redirect to Dashboard.html
     } else {
         alert('Invalid email or password!');
     }
