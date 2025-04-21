@@ -27,6 +27,23 @@ function showSuccessModal(message, redirectUrl) {
     }, 3000);
 }
 
+// Helper function to validate password
+function isValidPassword(password) {
+    const minLength = 12;
+    const hasUpper = /[A-Z]/.test(password);
+    const hasLower = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSpecial = /[^A-Za-z0-9]/.test(password);
+
+    return (
+        password.length >= minLength &&
+        hasUpper &&
+        hasLower &&
+        hasNumber &&
+        hasSpecial
+    );
+}
+
 // Register functionality
 const registerForm = document.querySelector('.form-box.Register form');
 registerForm.addEventListener('submit', (e) => {
@@ -40,6 +57,11 @@ registerForm.addEventListener('submit', (e) => {
         alert('Passwords do not match!');
         return;
     }
+
+    if (!isValidPassword(password)) {
+        alert('Password must be at least 12 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.');
+        return;
+    }
     
     const users = JSON.parse(localStorage.getItem('users')) || {};
     if (users[email]) {
@@ -47,7 +69,7 @@ registerForm.addEventListener('submit', (e) => {
     } else {
         users[email] = password;
         localStorage.setItem('users', JSON.stringify(users));
-        showSuccessModal('Registration successful!', './signup.html'); // Redirect to Product.html
+        showSuccessModal('Registration successful!', './signup.html'); // Redirect to signup.html
     }
 });
 
