@@ -69,7 +69,7 @@ registerForm.addEventListener('submit', (e) => {
     } else {
         users[email] = password;
         localStorage.setItem('users', JSON.stringify(users));
-        showSuccessModal('Registration successful!', './signup.html'); // Redirect to signup.html
+        showSuccessModal('Registration successful!', './Product.html'); // Redirect to signup.html
     }
 });
 

@@ -88,7 +88,7 @@
 
             <!-- Billing Address Section -->
             <h5 class="mt-4">Billing Address</h5>
-            <form>
+            <form id="paymentForm">
                 <div class="mb-3">
                     <label for="fullName" class="form-label">Full Name</label>
                     <input type="text" class="form-control" id="fullName" placeholder="Ben Gashaw" required>
@@ -139,33 +139,33 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-pay" onclick="location.href='./Dashboard.html'">Submit</button>
+                <button type="submit" class="btn btn-pay" >Submit</button>
             </form>
 
             <div class="secure-text">
                 <i class="fas fa-lock"></i> Your payment is secure and encrypted.
             </div>
+
+            <footer><p>&copy;           2024 Design Jevic. All rights reserved.</p></footer>
+
         </div>
     </div>
 
     <script>
-          
-           const form = document.getElementById('paymentForm');
-            const input = document.getElementById('userInput');
-            const confirmation = document.getElementById('confirmation');
-
-            form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            if (input.value.trim().toLowerCase() === 'ssubmit') {
-                confirmation.textContent = '✅ Payment successfully received!';
-                input.disabled = true;
-                form.querySelector('button').disabled = true;
-            } else {
-                confirmation.textContent = '❌ Incorrect input. Please type "ssubmit" to confirm payment.';
-                confirmation.style.color = 'red';
-            }
-            });
-  </script>
+        document.getElementById('paymentForm').addEventListener('submit', function (event) {
+          event.preventDefault();
+      
+          const userInfo = {
+            cardName: document.getElementById('cardName').value,
+            cardNumber: document.getElementById('cardNumber').value,
+            expiryDate: document.getElementById('expiryDate').value,
+            cvv: document.getElementById('cvv').value
+          };
+      
+          localStorage.setItem('cardInfo', JSON.stringify(userInfo));
+          window.location.href = 'Dashboard.html';
+        });
+      </script>
 
 
 
